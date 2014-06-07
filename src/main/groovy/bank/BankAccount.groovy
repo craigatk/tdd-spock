@@ -6,4 +6,8 @@ class BankAccount {
     void deposit(BigDecimal amount) {
         balance += amount
     }
+
+    void withdraw(BigDecimal amount) {
+        balance -= amount
+    }
 }

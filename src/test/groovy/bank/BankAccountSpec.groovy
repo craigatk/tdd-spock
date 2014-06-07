@@ -31,4 +31,24 @@ class BankAccountSpec extends Specification {
         10     || 10
         20     || 20
     }
+
+    @Unroll
+    def "withdrawing #amount should reduce balance to #expectedBalance"() {
+        given:
+        BankAccount bankAccount = new BankAccount()
+
+        bankAccount.deposit(20)
+
+        when:
+        bankAccount.withdraw(amount)
+
+        then:
+        assert bankAccount.balance == expectedBalance
+
+        where:
+        amount || expectedBalance
+        5      || 15
+        10     || 10
+        15     || 5
+    }
 }
