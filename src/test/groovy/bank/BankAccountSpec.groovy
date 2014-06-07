@@ -51,4 +51,17 @@ class BankAccountSpec extends Specification {
         10     || 10
         15     || 5
     }
+
+    def "withdrawing and depositing should update balance"() {
+        given:
+        BankAccount bankAccount = new BankAccount()
+
+        when:
+        bankAccount.deposit(50)
+        bankAccount.withdraw(20)
+        bankAccount.deposit(10)
+
+        then:
+        assert bankAccount.balance == 40
+    }
 }
