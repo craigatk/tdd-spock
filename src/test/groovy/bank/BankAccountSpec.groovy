@@ -52,7 +52,7 @@ class BankAccountSpec extends Specification {
         15     || 5
     }
 
-    def "withdrawing and depositing should update balance"() {
+    def "withdrawing and depositing should update balance and create transaction list"() {
         given:
         BankAccount bankAccount = new BankAccount()
 
@@ -63,5 +63,10 @@ class BankAccountSpec extends Specification {
 
         then:
         assert bankAccount.balance == 40
+
+        and:
+        assert bankAccount.transactions.contains(new Transaction(amount: 50, type: 'd'))
+        assert bankAccount.transactions.contains(new Transaction(amount: 20, type: 'w'))
+        assert bankAccount.transactions.contains(new Transaction(amount: 10, type: 'd'))
     }
 }
